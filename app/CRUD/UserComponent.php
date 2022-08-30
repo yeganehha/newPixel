@@ -9,13 +9,13 @@ use App\Models\User;
 class UserComponent implements CRUDComponent
 {
     // Manage actions in crud
-    public $create = true;
-    public $delete = true;
-    public $update = true;
+    public $create = false;
+    public $delete = false;
+    public $update = false;
 
     // If you will set it true it will automatically
     // add `user_id` to create and update action
-    public $with_user_id = true;
+    public $with_user_id = false;
 
     public function getModel()
     {
@@ -25,13 +25,26 @@ class UserComponent implements CRUDComponent
     // which kind of data should be showed in list page
     public function fields()
     {
-        return ['username', 'discriminator', 'email', 'avatar', 'verified', 'locale', 'mfa_enabled', 'refresh_token'];
+        return [
+            'username' => Field::title("username")
+                ->withoutSorting(),
+            'discriminator' => Field::title("discriminator")
+                ->withoutSorting(),
+            'email' => Field::title("email")
+                ->withoutSorting(),
+            'avatar' => Field::title("Users profile")
+                ->asImage()
+                ->roundedImage()
+                ->withoutSorting(),
+            'active_from' ,
+            'expire_at'
+        ];
     }
 
     // Searchable fields, if you dont want search feature, remove it
     public function searchable()
     {
-        return ['username', 'discriminator', 'email', 'avatar', 'verified', 'locale', 'mfa_enabled', 'refresh_token'];
+        return ['username', 'discriminator', 'email', 'expire_at', 'active_from'];
     }
 
     // Write every fields in your db which you want to have a input

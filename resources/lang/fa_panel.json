@@ -84,5 +84,13 @@
     "day": "روز",
     "toman": "تومان",
     "price": "مبلغ",
-    "discord_roll_id": "Discord Role ID"
+    "discord_roll_id": "Discord Role ID",
+    "username": "دیسکورد",
+    "discriminator": "کد 4 رقمی دیسکورد",
+    "Users profile": "آواتار دیسکورد",
+    "Expire_at": "تاریخ اعتبار",
+    "User": "کاربر",
+    "Users": "کاربران",
+    "Active_from": "Active_from",
+    "Expire_at_human_format": "Expire_at_human_format"
 }

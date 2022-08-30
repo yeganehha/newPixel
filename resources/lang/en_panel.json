@@ -78,5 +78,13 @@
     "day": "day",
     "toman": "toman",
     "price": "price",
-    "discord_roll_id": "discord_roll_id"
+    "discord_roll_id": "discord_roll_id",
+    "username": "username",
+    "discriminator": "discriminator",
+    "Users profile": "User's profile",
+    "Expire_at": "Expire_at",
+    "User": "User",
+    "Users": "Users",
+    "Active_from": "Active_from",
+    "Expire_at_human_format": "Expire_at_human_format"
 }
