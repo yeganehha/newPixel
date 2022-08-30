@@ -84,4 +84,8 @@ class User extends Authenticatable
         $percent = round($duration * 100 / $totalDuration ) ;
         return $percent > 100 ? 100 : ( $percent < 0 ? 0 : $percent) ;
     }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
 }

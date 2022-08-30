@@ -14,7 +14,8 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "rezaamini-ir/laravel-easypanel": "^2.1"
+        "rezaamini-ir/laravel-easypanel": "^2.1",
+        "shetabit/payment": "^4.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -132,7 +132,16 @@
 
         <!-- Container -->
         <div class="container-fluid">
-
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    {!!  implode('', $errors->all('<div>:message</div>')) !!}
+                </div>
+            @endif
             @yield('content')
 
         </div>
