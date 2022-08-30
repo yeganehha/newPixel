@@ -73,4 +73,15 @@ class User extends Authenticatable
         $user = parent::getAttribute('id');
         return 'https://cdn.discordapp.com/avatars/'.$user.'/'.$avatar.'.webp?size=64' ;
     }
+
+    public function getPercent(){
+        $finishTime = $this->expire_at ;
+        $startTime = $this->active_from ;
+        if ( $this->expire_at == null or $this->active_from == null )
+            return false;
+        $totalDuration = $finishTime->diffInSeconds($startTime);
+        $duration = Carbon::now()->diffInSeconds($startTime);
+        $percent = round($duration * 100 / $totalDuration ) ;
+        return $percent > 100 ? 100 : ( $percent < 0 ? 0 : $percent) ;
+    }
 }

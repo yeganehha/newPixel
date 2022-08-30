@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware'=>['auth'] ] , function (){
+    Route::get('dashboard' , [\App\Http\Controllers\Panel\MainController::class , 'dashboard'])->name('dashbaord');
+    Route::get('history' , [\App\Http\Controllers\Panel\MainController::class , 'dashboard'])->name('history');
+    Route::get('subscribe/{id}' , [\App\Http\Controllers\Panel\MainController::class , 'dashboard'])->name('buy');
+});
