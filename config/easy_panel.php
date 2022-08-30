@@ -31,7 +31,7 @@ return [
     'redirect_unauthorized' => '/',
 
     // Admin panel routes prefix
-    'route_prefix' => 'admin', //  http://localhost/admin
+    'route_prefix' => 'panel', //  http://localhost/admin
 
     // Your own middlewares for easy panel routes.
     'additional_middlewares' => [],

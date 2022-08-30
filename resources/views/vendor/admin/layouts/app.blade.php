@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Erfan Ebrahimi">
 
     <title>{{ __('EasyPanel') }} - {{ $title ?? __('Home') }}</title>
 
@@ -80,6 +80,8 @@
                 </ul>
 
                 <ul class="navbar-nav float-right">
+
+                    @if ( count(\EasyPanel\Support\Contract\LangManager::getLanguages()) > 1 )
                     <li class="nav-item d-none d-md-block">
                         <a class="nav-link" href="javascript:void(0)">
                             <div class="customize-input">
@@ -96,13 +98,14 @@
                             </div>
                         </a>
                     </li>
+                    @endif
 
                     <!-- User profile and search -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                                 <span class="ml-2 d-none d-lg-inline-block"><span>{{ __('Hello') }},</span> <span
-                                        class="text-dark">@user('name')</span> <i data-feather="chevron-down"
+                                        class="text-dark">@user('username')</span> <i data-feather="chevron-down"
                                                                                   class="svg-icon"></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated pb-0 flipInY">
@@ -138,7 +141,7 @@
         <!-- End Container fluid  -->
 
         <!-- footer -->
-        <footer class="footer text-center text-muted">Adminmart Template, <a href="https://github.com/rezaamini-ir/laravel-easypanel">EasyPanel</a> Package.</footer>
+        <footer class="footer text-center text-muted" style="direction: ltr">VIP Package, Developed by <a href="https://erfanebrahimi.ir">Erfan Ebrahimi</a>.</footer>
         <!-- End footer -->
     </div>
 </div>
