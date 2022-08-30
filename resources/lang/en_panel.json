@@ -25,7 +25,7 @@
     "Update": "Update",
     "Dashboard": "Dashboard",
     "List": "List",
-    "BuildTitle" : "Build a CRUD",
+    "BuildTitle": "Build a CRUD",
     "BuildMessage": "Do You really want to build this CRUD ? (Components will be replaced)",
     "Yes, Build it": "Yes, Build it.",
     "CRUD was activated": "CRUD was activated",
@@ -67,5 +67,16 @@
     "email": "Email",
     "Full Access": "Full Access",
     "Lists": "Lists",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Name": "Name",
+    "Expire": "Expire",
+    "Price": "Price",
+    "Tire": "Tire",
+    "Tires": "Tires",
+    "Discord_roll_id": "Discord_roll_id",
+    "expire": "expire",
+    "day": "day",
+    "toman": "toman",
+    "price": "price",
+    "discord_roll_id": "discord_roll_id"
 }

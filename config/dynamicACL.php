@@ -4,7 +4,7 @@ return [
     /**
      * rtl || ltr
      */
-    'alignment' => 'ltr',
+    'alignment' => 'rtl',
 
     /*
      * "name" means route name

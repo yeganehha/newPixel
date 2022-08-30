@@ -2,7 +2,7 @@
     "Hello": "سلام",
     "EasyPanel": "پنل مدیریت",
     "Logout": "خروج",
-    "CRUD Menu": "",
+    "CRUD Menu": "دسترسی ها",
     "Applications": "برنامه",
     "Home": "خانه",
     "Create": "ساخت",
@@ -73,5 +73,16 @@
     "email": "ایمیل",
     "Full Access": "دسترسی کامل",
     "Lists": "لیست",
-    "Delete": "حذف"
+    "Delete": "حذف",
+    "Name": "نام",
+    "Expire": "مدت اعتبار",
+    "Price": "مبلغ",
+    "Tire": "پکیج",
+    "Tires": "پکیج ها",
+    "Discord_roll_id": "Discord Role ID",
+    "expire": "مدت اعتبار",
+    "day": "روز",
+    "toman": "تومان",
+    "price": "مبلغ",
+    "discord_roll_id": "Discord Role ID"
 }
