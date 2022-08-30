@@ -1,6 +1,7 @@
 <tr x-data="{ deleteModal : false, createModal : false }">
-    <td> <span class="text-primary">{{ $admin->name }}</span> </td>
-    <td> <span class="text-primary">{{ $admin->email }}</span> </td>
+    <td> <span class="text-primary">{{ $admin->discriminator }}</span> </td>
+    <td> <span class="text-primary">{{ $admin->username }}</span> </td>
+    <td><img class="img-fluid  rounded-circle " width="50" height="50" src="{{ $admin->getAvatar() }}" alt=""></td>
     <td>
 
         @if(hasPermission(getRouteName().'.admins.update', true))

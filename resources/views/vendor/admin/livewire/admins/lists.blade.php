@@ -20,7 +20,7 @@
                         <tr>
                             @php $firstAdmin = $admins->first(); @endphp
                             @foreach($firstAdmin->getFillable() as $fillable)
-                                @if( ! in_array($fillable, $firstAdmin->getHidden())) <td>{{ __($fillable) }}</td> @endif
+                                @if( in_array($fillable, $firstAdmin->adminHidden())) <td>{{ __($fillable) }}</td> @endif
                             @endforeach
                             <td>{{ __('Action') }}</td>
                         </tr>

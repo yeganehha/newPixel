@@ -92,5 +92,16 @@
     "User": "کاربر",
     "Users": "کاربران",
     "Active_from": "تاریخ خرید پکیج",
-    "Expire_at_human_format": "معتبر تا"
+    "Expire_at_human_format": "معتبر تا",
+    "Id": "شماره پیگیری",
+    "User Discriminator": "شماره دیسکورد",
+    "Tire Name": "نام پکیج",
+    "Amount": "مبلغ",
+    "is_pay": "وضعیت پرداخت",
+    "پرداخت شده": "پرداخت شده",
+    "ناموفق": "ناموفق",
+    "Trans_id": "شماره پیگیری بانکی",
+    "Result": "پیام بانک",
+    "Transaction": "تراکنش",
+    "Transactions": "تراکنش ها"
 }

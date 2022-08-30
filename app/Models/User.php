@@ -31,6 +31,13 @@ class User extends Authenticatable
         'expire_at',
         'active_from',
     ];
+    public function  adminHidden() {
+        return [
+            'username',
+            'discriminator',
+            'avatar',
+        ];
+    }
 
     /**
      * The attributes that should be hidden for serialization.
