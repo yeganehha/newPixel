@@ -35,7 +35,12 @@
             <!-- discord_roll_id Input -->
             <div class='form-group'>
                 <label for='input-discord_roll_id' class='col-sm-2 control-label '> {{ __('discord_roll_id') }}</label>
-                <input type='number' id='input-discord_roll_id' wire:model.lazy='discord_roll_id' class="form-control  @error('discord_roll_id') is-invalid @enderror" placeholder='' autocomplete='off'>
+                <select id='input-discord_roll_id' wire:model.lazy='discord_roll_id' class="form-control  @error('discord_roll_id') is-invalid @enderror" autocomplete='off'>
+                    @forelse( \App\Http\Controllers\Panel\DashboardController::getRoles() as $role )
+                        <option value="{{ $role['id'] }}" wire:key="{{$role['id']}}">{{ $role['name']  }}</option>
+                    @empty
+                    @endforelse
+                </select>
                 @error('discord_roll_id') <div class='invalid-feedback'>{{ $message }}</div> @enderror
             </div>
 
