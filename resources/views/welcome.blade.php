@@ -69,7 +69,6 @@
         cursor: pointer;
         color: var(--color-text);
         background-color: var(--color-accent-1-a10);
-        background-image: url(5acaf3ca7e527ae76bc22212bbe7532f.png);
         background-size: 50%;
         -webkit-animation: bganim 40s linear 0s infinite;
         animation: bganim 40s linear 0s infinite;
@@ -156,20 +155,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav ml-auto">
+
+                        @if ( env('FIVEMLINK' , false) )
                         <li class="nav-item">
-                            <a class="nav-link gray-link text-white ml-3 text-right" href="#">
+                            <a class="nav-link gray-link text-white ml-3 text-right" href="{{ env('FIVEMLINK') }}">
                                 <span>
-                                    گیت هاب
+                                    ورود به سرور
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link gray-link nav-link text-white ml-3 text-right" href="#">
-                                <span>
-                                    دیسکورد
-                                </span>
-                            </a>
-                        </li>
+                        @endif
+                        @if (env('DISCORD' , false))
+                            <li class="nav-item">
+                                <a class="nav-link gray-link nav-link text-white ml-3 text-right" href="{{ env('DISCORD') }}">
+                                    <span>
+                                        دیسکورد
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </nav>
@@ -181,7 +185,10 @@
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
                 </div>
             </div>
-            <button id="client-download"><span class="text">ورود به حساب کاربری</span> <span class="description">نامسایت</span></button>
+
+            @if (Route::has('login'))
+                <a href="{{ route('login') }}" id="client-download"><span class="text">ورود به حساب کاربری</span> <span class="description text-center">از طریق دیسکورد</span></a>
+            @endif
         </div>
 
         <div class="text-center footer-text position-absolute col-10">
