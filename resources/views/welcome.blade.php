@@ -147,7 +147,7 @@
         <header class="mt-md-3 mt-3" dir="ltr">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">
-                    <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" width="30" alt="logo">
+                    <img src="https://cdn.discordapp.com/attachments/1008338641858330665/1012718569391390791/232323.png" width="80" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

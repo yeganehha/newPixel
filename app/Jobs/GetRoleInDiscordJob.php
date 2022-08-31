@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use RestCord\DiscordClient;
 
 class GetRoleInDiscordJob implements ShouldQueue
 {
@@ -34,6 +35,20 @@ class GetRoleInDiscordJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::notice( $this->discordId ." ".$this->roleId);
+        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN')]);
+        if ( is_array($this->roleId) ){
+            foreach ($this->roleId as $id)
+                $discord->guild->removeGuildMemberRole([
+                    'guild.id' =>  (int) env('DIsCORD_SERVER'),
+                    'user.id' =>  (int) $this->discordId,
+                    'role.id' =>  (int) $id,
+                ]);
+        } else {
+            $discord->guild->removeGuildMemberRole([
+                'guild.id' =>  (int) env('DIsCORD_SERVER'),
+                'user.id' =>  (int) $this->discordId,
+                'role.id' =>  (int) $this->roleId,
+            ]);
+        }
     }
 }
