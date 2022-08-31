@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use RestCord\DiscordClient;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test' , function () {
+    $discord = new DiscordClient(['token' => env('DISCORD_TOKEN')]);
+
+    dd($discord->guild->getGuildRoles(['guild.id' =>  (int) env('DIsCORD_SERVER')]));
+    $discord->guild->addGuildMemberRole([
+        'guild.id' =>  (int) env('DIsCORD_SERVER'),
+        'user.id' =>  658445453569818646,
+        'role.id' =>  1008122320197529650,
+    ]);
+    $discord->guild->removeGuildMemberRole([
+        'guild.id' =>  (int) env('DIsCORD_SERVER'),
+        'user.id' =>  658445453569818646,
+        'role.id' =>  1008122320197529650,
+    ]);
+
 });
 
 Route::group(['middleware'=>['auth'] ] , function (){

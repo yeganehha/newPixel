@@ -14,6 +14,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "restcord/restcord": "v9.x-dev",
         "rezaamini-ir/laravel-easypanel": "^2.1",
         "shetabit/payment": "^4.3"
     },
