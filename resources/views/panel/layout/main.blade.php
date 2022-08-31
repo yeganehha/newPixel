@@ -110,6 +110,14 @@
                             <span class="hide-menu">تاریخچه تراکنش ها</span>
                         </a>
                     </li>
+                    @if ( auth()->user()->isAdmin() )
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="@route(getRouteName().'.home')" aria-expanded="false">
+                            <i class="fa fa-lock"></i>
+                            <span class="hide-menu">پنل مدیریت</span>
+                        </a>
+                    </li>
+                    @endif
                     @if ( env('FIVEMLINK' , false) )
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ env('FIVEMLINK') }}" aria-expanded="false">

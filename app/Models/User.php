@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use EasyPanel\Models\PanelAdmin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -123,5 +124,9 @@ class User extends Authenticatable
 
     public function tire(){
         return $this->belongsTo(Tire::class)->withTrashed();
+    }
+
+    public function isAdmin(){
+        return PanelAdmin::where('user_id' , $this->id)->exists() ;
     }
 }
