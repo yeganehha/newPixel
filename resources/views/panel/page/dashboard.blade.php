@@ -9,6 +9,9 @@
                         <img src="https://cdn.discordapp.com/avatars/@user('id')/@user('avatar').webp?size=128" class="rounded-circle" alt="">
                     </div>
                     <h4 class="fs-22 text-black mb-1">@user('username')#@user('discriminator')</h4>
+                    @if ( auth()->user()->getActiveTire()  )
+                        <p class="fs-22 text-black mb-1">{{ auth()->user()->tire->name }}</p>
+                    @endif
                 </div>
                 <div class="card-body  activity-card">
                     @if ( auth()->user()->getPercent() !== false )
@@ -22,24 +25,24 @@
                         </div>
                     @endif
                     @if ( auth()->user()->active_from != null )
-                    <div class=" row d-flex mb-1 align-items-center">
+                    <div class="d-flex mb-1 align-items-center">
                         <strong class="text-black">
                             <i class="fa fa-calendar ml-3"></i>
-                            تاریخ شروع پکیج:
+                            تاریخ شروع اشتراک:
                         </strong>
                     </div>
-                    <div class=" row d-flex mb-3 mr-4 align-items-center">
+                    <div class=" d-flex mb-3 mr-4 align-items-center">
                         <span class="text-black" style="cursor: pointer" title="{{ auth()->user()->active_from->toJalali()->formatJalaliDatetime() }}">{{ auth()->user()->active_from->toJalali()->formatWord('l d S F') }}</span>
                     </div>
                     @endif
                     @if ( auth()->user()->expire_at != null and auth()->user()->active_from != null )
-                        <div class=" row d-flex mb-1 align-items-center">
+                        <div class="d-flex mb-1 align-items-center">
                             <strong class="text-black">
                                 <i class="fa fa-hourglass-half ml-3"></i>
                                 اعتبار تا:
                             </strong>
                         </div>
-                        <div class=" row d-flex mb-3 mr-4 align-items-center">
+                        <div class="d-flex mb-3 mr-4 align-items-center">
                             <span class="text-black" style="cursor: pointer" title="{{ auth()->user()->expire_at->toJalali()->formatJalaliDatetime() }}">{{ auth()->user()->expireAtHumanFormat() }}</span>
                         </div>
                     @endif
@@ -54,6 +57,9 @@
                             <tr>
                                 <th>عنوان</th>
                                 <th>مبلغ</th>
+                                @if( auth()->user()->getActiveTire() )
+                                    <th>تخفیف ارتقا اشتراک</th>
+                                @endif
                                 <th>مدت اعتبار</th>
                                 <th>دریافت</th>
                             </tr>
@@ -62,11 +68,37 @@
                     @forelse($packages as $package)
                         <tr>
                             <td>{{ $package->name }}</td>
-                            <td>{{ number_format($package->price) }} تومان</td>
+                            <td>
+                                @if( $package->price == 0 )
+                                    رایگان !
+                                @else
+                                    {{ number_format($package->price) }} تومان
+                                @endif
+                            </td>
+                            @if( auth()->user()->getActiveTire() )
+                                @php
+                                    $discount =auth()->user()->discountUpgrade() ;
+                                    $discount = ( $discount > $package->price ) ? $package->price : $discount;
+                                @endphp
+                                <td>@if( $discount <= 0 or $package->price <= 0 or $package->id == auth()->user()->tire_id )
+                                    --
+                                @else
+                                    {{ number_format($discount) }} تومان
+                                @endif
+                                </td>
+                            @endif
                             <td>{{ $package->expire }} روز</td>
                             <td>
-                                @if( auth()->user()->expire_at->gt(\Carbon\Carbon::now()) )
-                                    <button class="btn btn-danger disabled" disabled>غیر فعال</button>
+                                @if( auth()->user()->getActiveTire() )
+                                    @if( $package->id == auth()->user()->tire_id )
+                                        <button class="btn btn-danger disabled" disabled>اشتراک فعلی!</button>
+                                    @else
+                                        @if( $package->price <= 0 or $package->price - $discount <= 0 )
+                                            <a href="{{ route('buy' , $package->id ) }}" class="btn btn-warning">رایگان ارتقا دهید !</a>
+                                        @else
+                                            <a href="{{ route('buy' , $package->id ) }}" class="btn btn-warning">ارتقا اشتراک</a>
+                                        @endif
+                                    @endif
                                 @else
                                     @if( $package->price <= 0)
                                         <a href="{{ route('buy' , $package->id ) }}" class="btn btn-warning">رایگان !</a>

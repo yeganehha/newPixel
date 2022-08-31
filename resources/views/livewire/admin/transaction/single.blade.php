@@ -1,12 +1,13 @@
 <tr x-data="{ modalIsOpen : false }">
     <td class="">#{{ $transaction->id }}</td>
     <td><img class="img-fluid  rounded-circle " width="50" height="50" src="{{ $transaction->user->getAvatar() }}" alt=""></td>
-    <td class="">{{ $transaction->user->discriminator }}</td>
+    <td class="">{{ $transaction->user->discriminator }}<br>{{ $transaction->user->id }}</td>
     <td class="">{{ $transaction->tire->name }}</td>
+    <td class="">{{ $transaction->lastTire ? $transaction->lastTire->name : "-" }}</td>
     <td class="">{{ number_format($transaction->amount) }}</td>
+    <td class="">{{ number_format($transaction->discount) }}</td>
     <td class=""><span class="badge badge-{{ $transaction->is_pay ? 'success' : 'danger' }} font-14 ">{{ $transaction->is_pay ? __('پرداخت شده') : __('ناموفق') }}</span></td>
-    <td class="">{{ $transaction->trans_id }}</td>
-    <td class="">{{ $transaction->result }}</td>
+    <td class="">{{ $transaction->trans_id }}<br>{{ $transaction->result }}</td>
 
     @if(getCrudConfig('Transaction')->delete or getCrudConfig('Transaction')->update)
         <td>

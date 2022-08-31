@@ -8,7 +8,8 @@
                 <tr>
                     <th>عنوان</th>
                     <th>اعتبار</th>
-                    <th>مبلغ</th>
+                    <th>مبلغ پرداختی</th>
+                    <th>تخفیف</th>
                     <th>وضعیت</th>
                     <th>شماره پیگیری</th>
                     <th>تاریخ</th>
@@ -24,6 +25,13 @@
                                 رایگان !
                             @else
                                 {{ number_format($transaction->amount) }} تومان
+                            @endif
+                        </td>
+                        <td>
+                            @if( $transaction->discount == 0 )
+                                --
+                            @else
+                                {{ number_format($transaction->discount) }} تومان
                             @endif
                         </td>
                         <td>

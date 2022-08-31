@@ -13,7 +13,9 @@ class Transaction extends Model
         'uuid',
         'user_id',
         'tire_id',
+        'last_tire_id',
         'amount',
+        'discount',
         'is_pay',
         'visitor',
         'result',
@@ -36,6 +38,10 @@ class Transaction extends Model
 
     public function tire(){
         return $this->belongsTo(Tire::class)->withTrashed();
+    }
+
+    public function lastTire(){
+        return $this->belongsTo(Tire::class ,'last_tire_id')->withTrashed();
     }
 
     /**

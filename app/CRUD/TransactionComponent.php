@@ -26,13 +26,11 @@ class TransactionComponent implements CRUDComponent
     public function fields()
     {
         return ['id',
-            'user.avatar' => Field::title("Users profile")
-                ->asImage()
-                ->roundedImage()
-                ->withoutSorting() ,
             'user.discriminator' ,
             'tire.name' ,
+            'lastTire.name' ,
             'amount',
+            'discount',
             'is_pay' => Field::title("is_pay")
                 ->asBooleanBadge()
                 ->trueValue('پرداخت شده')
@@ -45,7 +43,7 @@ class TransactionComponent implements CRUDComponent
     // Searchable fields, if you dont want search feature, remove it
     public function searchable()
     {
-        return ['id', 'user.discriminator' ,'tire.name' , 'trans_id', 'result'];
+        return ['id', 'user.id' ,'tire.name' , 'trans_id', 'result'];
     }
 
     // Write every fields in your db which you want to have a input

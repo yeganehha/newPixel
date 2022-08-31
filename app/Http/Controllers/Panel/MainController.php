@@ -22,8 +22,8 @@ use Shetabit\Payment\Facade\Payment;
 class MainController extends Controller
 {
     public function dashboard(){
-        $packages = Cache::remember('tires' , 5* 60  , function (){
-            return Tire::orderByDesc('price')->get();
+        $packages = Cache::remember('tires' , 1  , function (){
+            return Tire::orderBy('price')->get();
         });
         return view('panel.page.dashboard' , compact('packages'));
     }
@@ -40,18 +40,23 @@ class MainController extends Controller
     public function buy(Request $request, Tire $tire, Transaction $transaction){
         try {
             DB::beginTransaction();
-            if ($tire->price > 0) {
+            $discount =Auth()->user()->discountUpgrade() ;
+            $discount = ( $discount > $tire->price ) ? $tire->price : $discount;
+            if ($tire->price > 0 and  $discount < $tire->price) {
                 $transaction->user_id = Auth()->id();
                 $transaction->tire_id = $tire->id;
                 $transaction->uuid = \Illuminate\Support\Str::uuid();
-                $transaction->amount = $tire->price;
+                $transaction->discount = $discount;
+                $transaction->last_tire_id = Auth()->user()->getActiveTire(false)->id;
+                $transaction->amount = $tire->price - $discount;
                 $transaction->visitor = $request->ip();
                 $transaction->save();
                 $invoice = new Invoice;
-                $invoice->amount($tire->price);
+                $invoice->amount( $tire->price - $discount );
                 $invoice->detail('Title', $tire->name)
                     ->detail('Time', $tire->expire . ' Day')
                     ->detail('uuid', $tire->expire . ' Day')
+                    ->detail('discount', $transaction->discount)
                     ->detail('User', Auth()->id());
                 return Payment::callbackUrl(route('callback', $transaction->uuid))->purchase($invoice, function ($driver, $transactionId) use ($transaction) {
                     $transaction->trans_id = $transactionId;
@@ -61,6 +66,8 @@ class MainController extends Controller
             } else {
                 $transaction->user_id = Auth()->id();
                 $transaction->tire_id = $tire->id;
+                $transaction->discount = $discount;
+                $transaction->last_tire_id = Auth()->user()->getActiveTire(false)->id;
                 $transaction->amount = 0;
                 $transaction->is_pay = true;
                 $transaction->visitor = $request->ip();
@@ -77,15 +84,18 @@ class MainController extends Controller
 
     public function callback(Request $request , Transaction  $transaction){
         try {
-            DB::beginTransaction();
-            $receipt = Payment::amount($transaction->amount)->transactionId($request->trans_id)->verify();
-            $transaction->trans_id =  $receipt->getReferenceId();
-            $transaction->result =  "پرداخت تکمیل و با موفقیت انجام شده است";
-            $transaction->is_pay = true;
-            $transaction->save();
-            $this->subscribeAdd($transaction->tire()->first());
-            DB::commit();
-            return redirect()->route('history')->with('success' , 'دریافت اشتراک شما با موفقیت انجام شد.');
+            if ( $transaction->is_pay == false ) {
+                DB::beginTransaction();
+                $receipt = Payment::amount($transaction->amount)->transactionId($request->trans_id)->verify();
+                $transaction->trans_id = $receipt->getReferenceId();
+                $transaction->result = "پرداخت تکمیل و با موفقیت انجام شده است";
+                $transaction->is_pay = true;
+                $transaction->save();
+                $this->subscribeAdd($transaction->tire()->first());
+                DB::commit();
+                return redirect()->route('history')->with('success', 'دریافت اشتراک شما با موفقیت انجام شد.');
+            }
+            return redirect()->route('history')->withErrors( 'فاکتور مد نظر قبلا پرداخت شده است!');
         } catch (InvalidPaymentException | \Exception $exception) {
             DB::rollBack();
             $transaction->result = $exception->getMessage();

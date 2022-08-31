@@ -42,10 +42,11 @@
                             <th scope="col"> {{ __('discriminator') }} </th>
                             <th scope="col"> {{ __('email') }} </th>
                             <th scope="col"> {{ __('Users profile') }} </th>
+                            <th scope="col"> پکیج فعال </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('active_from')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'active_from') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'active_from') fa-sort-amount-up ml-2 @endif'></i> {{ __('Active_from') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('expire_at')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'expire_at') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'expire_at') fa-sort-amount-up ml-2 @endif'></i> {{ __('Expire_at') }} </th>
-                            
-                            @if(getCrudConfig('User')->delete or getCrudConfig('User')->update)
+
+                            @if(getCrudConfig('User')->delete or getCrudConfig('User')->update or hasPermission(getRouteName().'.admins.update', true) )
                                 <th scope="col">{{ __('Action') }}</th>
                             @endif
                         </tr>

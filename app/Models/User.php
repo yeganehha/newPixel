@@ -24,6 +24,7 @@ class User extends Authenticatable
         'discriminator',
         'email',
         'avatar',
+        'tire_id',
         'verified',
         'locale',
         'mfa_enabled',
@@ -90,6 +91,29 @@ class User extends Authenticatable
         $duration = Carbon::now()->diffInSeconds($startTime);
         $percent = round($duration * 100 / $totalDuration ) ;
         return $percent > 100 ? 100 : ( $percent < 0 ? 0 : $percent) ;
+    }
+
+    public function discountUpgrade(){
+        $usePercent = $this->getPercent();
+        if ( $usePercent === false)
+            return 0 ;
+        $percent = 100 - $usePercent;
+        $percent = $percent < 0 ? 0 : ( $percent > 100 ? 100 : $percent);
+        $lastTire = $this->tire()->first();
+        if ( $lastTire == null )
+            return 0 ;
+        return  round($percent * $lastTire->price / 100 );
+    }
+
+    public function getActiveTire($boolean = true){
+        if (
+            $this->expire_at == null or
+            $this->active_from == null or
+            Carbon::now()->gt($this->expire_at)
+        )
+            return $boolean ? false : new Tire();
+
+        return  $boolean ? true : $this->tire()->first() ;
     }
 
     public function transactions(){
