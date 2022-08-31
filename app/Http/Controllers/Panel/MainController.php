@@ -29,7 +29,7 @@ class MainController extends Controller
         });
         return view('panel.page.dashboard' , compact('packages'));
     }
-    public function history(){dd(1);
+    public function history(){
         $transactions = Auth()->user()->transactions()->orderByDesc('id')->with('tire')->paginate();
         return view('panel.page.history' , compact('transactions'));
     }
@@ -114,8 +114,8 @@ class MainController extends Controller
         $user->save();
         $allRoles = Tire::where('id' , '!=', $tire->id)->get()->pluck('discord_roll_id')->toArray();
         if ( count($allRoles) > 0  )
-            dispatch(new GetRoleInDiscordJob($allRoles , $user->id ));
+            dispatch(new GetRoleInDiscordJob($user->id , $allRoles  ));
         if ( $tire->discord_roll_id != null )
-            dispatch(new GiveRoleInDiscordJob($tire->discord_roll_id , $user->id ));
+            dispatch(new GiveRoleInDiscordJob($user->id , $tire->discord_roll_id));
     }
 }
