@@ -96,6 +96,7 @@ class MainController extends Controller
 
     private function subscribeAdd($tire){
         $user = Auth()->user();
+        $user->tire_id = $tire->id;
         $user->active_from = Carbon::now();
         $user->expire_at = Carbon::now()->addDays($tire->expire);
         $user->save();
