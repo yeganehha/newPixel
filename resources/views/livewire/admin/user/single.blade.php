@@ -3,12 +3,17 @@
     <td class="">{{ $user->discriminator }}</td>
     <td class="">{{ $user->email }}</td>
     <td><img class="img-fluid  rounded-circle " width="50" height="50" src="{{ $user->getAvatar() }}" alt=""></td>
+    <td class="">{{ $transaction->tire->name }}</td>
     <td class="">{{ $user->active_from }}</td>
     <td class="">{{ $user->expireAtHumanFormat() }}</td>
-
-    @if(getCrudConfig('User')->delete or getCrudConfig('User')->update)
+    @if(getCrudConfig('User')->delete or getCrudConfig('User')->update or hasPermission(getRouteName().'.admins.update', true))
         <td>
 
+            @if(hasPermission(getRouteName().'.admins.update', true))
+                <a href="@route('upgradeToAdmin', $user->id)" class="btn text-primary mt-1">
+                    <i class="fa fa-user-secret"></i>
+                </a>
+            @endif
             @if(getCrudConfig('User')->update && hasPermission(getRouteName().'.user.update', 1, 0, $user))
                 <a href="@route(getRouteName().'.user.update', $user->id)" class="btn text-primary mt-1">
                     <i class="icon-pencil"></i>

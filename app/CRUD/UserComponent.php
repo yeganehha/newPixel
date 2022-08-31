@@ -36,6 +36,7 @@ class UserComponent implements CRUDComponent
                 ->asImage()
                 ->roundedImage()
                 ->withoutSorting(),
+            'tire.name' ,
             'active_from' ,
             'expire_at'
         ];
@@ -44,7 +45,7 @@ class UserComponent implements CRUDComponent
     // Searchable fields, if you dont want search feature, remove it
     public function searchable()
     {
-        return ['username', 'discriminator', 'email', 'expire_at', 'active_from'];
+        return ['username', 'discriminator', 'email','tire.name' , 'expire_at', 'active_from'];
     }
 
     // Write every fields in your db which you want to have a input

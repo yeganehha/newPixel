@@ -23,3 +23,5 @@ Route::group(['middleware'=>['auth'] ] , function (){
     Route::get('subscribe/{tire}' , [\App\Http\Controllers\Panel\MainController::class , 'buy'])->name('buy');
     Route::get('verify/{transaction}' , [\App\Http\Controllers\Panel\MainController::class , 'callback'])->name('callback');
 });
+
+Route::get('/upgradeToAdmin/{user}' , [\App\Http\Controllers\Panel\MainController::class,'setAsAdmin'])->middleware('dynamicAcl')->name('upgradeToAdmin');

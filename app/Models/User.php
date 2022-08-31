@@ -95,4 +95,9 @@ class User extends Authenticatable
     public function transactions(){
         return $this->hasMany(Transaction::class);
     }
+
+
+    public function tire(){
+        return $this->belongsTo(Tire::class)->withTrashed();
+    }
 }

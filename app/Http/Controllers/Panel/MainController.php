@@ -7,7 +7,9 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Models\Tire;
 use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
+use EasyPanel\Models\PanelAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -29,6 +31,12 @@ class MainController extends Controller
         $transactions = Auth()->user()->transactions()->orderByDesc('id')->with('tire')->paginate();
         return view('panel.page.history' , compact('transactions'));
     }
+
+    public function setAsAdmin(User $user){
+        PanelAdmin::create(['user_id' => $user->id, 'super_user' => false]);
+        return redirect()->route(getRouteName().'.admins.lists')->with('success' , 'کاربر با موفقیت ادیمن شد.');
+    }
+
     public function buy(Request $request, Tire $tire, Transaction $transaction){
         try {
             DB::beginTransaction();
