@@ -29,7 +29,7 @@ class MainController extends Controller
         });
         return view('panel.page.dashboard' , compact('packages'));
     }
-    public function history(){
+    public function history(){dd(1);
         $transactions = Auth()->user()->transactions()->orderByDesc('id')->with('tire')->paginate();
         return view('panel.page.history' , compact('transactions'));
     }
