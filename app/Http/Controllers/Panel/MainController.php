@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Panel;
 
 
 use App\Http\Controllers\Controller;
+use App\Jobs\GetRoleInDiscordJob;
+use App\Jobs\GiveRoleInDiscordJob;
 use App\Models\Tire;
 use App\Models\Transaction;
 use App\Models\User;
@@ -110,5 +112,10 @@ class MainController extends Controller
         $user->active_from = Carbon::now();
         $user->expire_at = Carbon::now()->addDays($tire->expire);
         $user->save();
+        $allRoles = Tire::where('id' , '!=', $tire->id)->get()->pluck('discord_roll_id')->toArray();
+        if ( count($allRoles) > 0  )
+            dispatch(new GetRoleInDiscordJob($allRoles , $user->id ));
+        if ( $tire->discord_roll_id != null )
+            dispatch(new GiveRoleInDiscordJob($tire->discord_roll_id , $user->id ));
     }
 }
