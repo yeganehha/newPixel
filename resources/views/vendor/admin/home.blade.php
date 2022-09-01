@@ -1,97 +1,80 @@
 @component('admin::layouts.app')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @php
-        \App\Http\Controllers\Panel\DashboardController::getUsers()->where('year', date("Y"))
+        $users = \App\Http\Controllers\Panel\DashboardController::thisMonthUsers();
+        $incomeMonth = \App\Http\Controllers\Panel\DashboardController::thisMonthIncome();
+        $incomeYear = \App\Http\Controllers\Panel\DashboardController::thisYearIncome();
     @endphp
     <div class="row">
-
+        <div class="col-md-12">
+            <canvas id="incomeMonth" style="max-height: 50vh;"></canvas>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
         <div class="col-md-6">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="usersChart"></canvas>
         </div>
         <div class="col-md-6">
-            <canvas id="myChart2" width="400" height="400"></canvas>
+            <canvas id="incomeYear"></canvas>
         </div>
     </div>
 
 
     <script>
-        const ctx2 = document.getElementById('myChart2');
-        const myChart2 = new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
 {{--        @php--}}
 {{--            foreach(\App\Http\Controllers\Panel\DashboardController::getUsers() as $i => $month) {--}}
 {{--                $month->--}}
-{{--            }--}}
+{{--     linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)       }--}}
 {{--        @endphp--}}
 
-        const ctx = document.getElementById('myChart');
-        const myChart = new Chart(ctx, {
+        const usersEl = document.getElementById('usersChart');
+        const usersChart = new Chart(usersEl, {
             type: 'bar',
             data: {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                labels: [@foreach($users as $k => $u) {!! "'$k', " !!} @endforeach],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [
-
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
+                    label: 'کاربران جدید ' + '{{ verta()->format('F') }}',
+                    data: [{{ implode(' , ' , $users) }}],
+                    backgroundColor: '#5f76e8',
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                responsive: true,
+            }
+        });
+
+
+        const incomeMonthEl = document.getElementById('incomeMonth');
+        const incomeMonth = new Chart(incomeMonthEl, {
+            type: 'bar',
+            data: {
+                labels: [@foreach($incomeMonth as $k => $i) {!! "'$k', " !!} @endforeach],
+                datasets: [{
+                    label: 'مبالغ پرداخت شده ' + '{{ verta()->format('F') }}' + " ماه",
+                    data: [{{ implode(' , ' , $incomeMonth) }}],
+                    backgroundColor: '#5f76e8',
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+
+        const incomeYearEl = document.getElementById('incomeYear');
+        const incomeYear = new Chart(incomeYearEl, {
+            type: 'bar',
+            data: {
+                labels: [@foreach($incomeYear as  $u) {!! "'".$u['time']."', " !!} @endforeach],
+                datasets: [{
+                    label: 'مبالغ پرداخت شده یک سال گذشته',
+                    data: [{{ implode(', ', array_map(function ($entry) {return $entry['price'];}, $incomeYear)) }}],
+                    backgroundColor: '#5f76e8',
+                }]
+            },
+            options: {
+                responsive: true,
             }
         });
     </script>
