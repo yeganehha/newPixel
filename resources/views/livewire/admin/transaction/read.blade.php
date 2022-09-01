@@ -39,7 +39,6 @@
                     <thead>
                         <tr>
                             <th scope="col" style='cursor: pointer' wire:click="sort('id')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'id') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'id') fa-sort-amount-up ml-2 @endif'></i> {{ __('Id') }} </th>
-                            <th scope="col"> {{ __('Users profile') }} </th>
                             <th scope="col"> {{ __('User Discriminator') }} </th>
                             <th scope="col"> {{ __('Tire Name') }} </th>
                             <th scope="col"> پکیج قبلی </th>
