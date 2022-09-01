@@ -3,7 +3,7 @@
     <td class="">{{ $user->discriminator }}<br>{{ $user->id }}</td>
     <td class="">{{ $user->email }}</td>
     <td><img class="img-fluid  rounded-circle " width="50" height="50" src="{{ $user->getAvatar() }}" alt=""></td>
-    <td class="">{{ $user->tire->name }}</td>
+    <td class="">{{ $user->tire ? $user->tire->name : "" }}</td>
     <td class="">{{ $user->active_from }}</td>
     <td class="">{{ $user->expireAtHumanFormat() }}</td>
     @if(getCrudConfig('User')->delete or getCrudConfig('User')->update or hasPermission(getRouteName().'.admins.update', true))

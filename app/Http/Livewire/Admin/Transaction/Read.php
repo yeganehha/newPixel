@@ -36,7 +36,7 @@ class Read extends Component
 
     public function render()
     {
-        $data = Transaction::query();
+        $data = Transaction::query()->with('user');
 
         $instance = getCrudConfig('transaction');
         if($instance->searchable()){
@@ -62,7 +62,6 @@ class Read extends Component
         }
 
         $data = $data->paginate(config('easy_panel.pagination_count', 15));
-
         return view('livewire.admin.transaction.read', [
             'transactions' => $data
         ])->layout('admin::layouts.app', ['title' => __(\Str::plural('Transaction')) ]);

@@ -35,7 +35,7 @@ class MainController extends Controller
     }
 
     public function setAsAdmin(User $user){
-        PanelAdmin::create(['user_id' => $user->id, 'super_user' => false]);
+        PanelAdmin::create(['user_id' => $user->id, 'is_superuser' => false]);
         return redirect()->route(getRouteName().'.admins.lists')->with('success' , 'کاربر با موفقیت ادیمن شد.');
     }
 
