@@ -6,6 +6,7 @@ use App\Jobs\GetRoleInDiscordJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use App\Models\Tire;
 
 class Kernel extends ConsoleKernel
@@ -20,8 +21,10 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $allRoles = Tire::get()->pluck('discord_roll_id')->toArray();
+            //Log::info('all roles.', $allRoles );
+            //dispatch(new GetRoleInDiscordJob(770212629461336085 , $allRoles));
             if ( count($allRoles) > 0  ) {
-                foreach (User::where('expire_at', '<=', now())->whereNotNull('tire_id') as $user) {
+                foreach (User::where('expire_at', '<=', now())->whereNotNull('tire_id')->get() as $user) {
                     $user->tire_id = null;
                     $user->save();
                     dispatch(new GetRoleInDiscordJob($user->id , $allRoles));
