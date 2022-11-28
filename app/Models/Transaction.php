@@ -32,6 +32,7 @@ class Transaction extends Model
         'trans_id' => 'string',
     ];
 
+
     public function user(){
         return $this->belongsTo(User::class , 'user_id');
     }

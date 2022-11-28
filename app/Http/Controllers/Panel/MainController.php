@@ -36,10 +36,6 @@ class MainController extends Controller
     }
 
 
-    public function backHistory(){
-        return view('panel.page.back-history' );
-    }
-
     public function setAsAdmin(User $user){
         PanelAdmin::create(['user_id' => $user->id, 'is_superuser' => false]);
         return redirect()->route(getRouteName().'.admins.lists')->with('success' , 'کاربر با موفقیت ادیمن شد.');
