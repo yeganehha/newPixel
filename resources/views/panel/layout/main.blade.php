@@ -105,6 +105,14 @@
                             <span class="hide-menu">داشبورد</span>
                         </a>
                     </li>
+                    @if ( auth()->user()->isAdmin() )
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="@route(getRouteName().'.home')" aria-expanded="false">
+                                <i class="fa fa-lock"></i>
+                                <span class="hide-menu">پنل مدیریت</span>
+                            </a>
+                        </li>
+                    @endif
                     <li class="sidebar-item @isActive('history', 'selected')">
                         <a class="sidebar-link @isActive('history', 'active') " href="@route('history')" aria-expanded="false">
                             <i data-feather="globe" class="feather-icon"></i>
@@ -117,14 +125,6 @@
                             <span class="hide-menu">زندگی نامه کارکتر</span>
                         </a>
                     </li>
-                    @if ( auth()->user()->isAdmin() )
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="@route(getRouteName().'.home')" aria-expanded="false">
-                            <i class="fa fa-lock"></i>
-                            <span class="hide-menu">پنل مدیریت</span>
-                        </a>
-                    </li>
-                    @endif
                     @if ( env('FIVEMLINK' , false) )
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ env('FIVEMLINK') }}" aria-expanded="false">
@@ -202,7 +202,6 @@
 @script("/assets/admin/js/feather.min.js")
 @script("/assets/admin/js/sidebarmenu.min.js")
 @script("/assets/admin/js/custom.min.js")
-
 @livewireScripts
 <script>
     let theme = localStorage.getItem('theme');

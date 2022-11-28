@@ -131,11 +131,11 @@ class User extends Authenticatable
     }
 
     public function isAccept(){
-        return backHistory::where('user_id' , $this->id)->where('status' , 2)->exists() ;
+        return History::where('user_id' , $this->id)->where('status' , 2)->exists() ;
     }
 
     public function histories()
     {
-        return $this->hasMany(backHistory::class )->latest();
+        return $this->hasMany(History::class )->latest();
     }
 }

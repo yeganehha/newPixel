@@ -31,6 +31,10 @@ class MainController extends Controller
         $transactions = Auth()->user()->transactions()->orderByDesc('id')->with('tire')->paginate();
         return view('panel.page.history' , compact('transactions'));
     }
+    public function backHistory(){
+        return view('panel.page.back-history' );
+    }
+
 
     public function backHistory(){
         return view('panel.page.back-history' );
