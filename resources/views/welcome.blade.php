@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>New Pixel</title>
+    <title>NOX RolePlay</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -147,7 +147,7 @@
         <header class="mt-md-3 mt-3" dir="ltr">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">
-                    <img src="https://cdn.discordapp.com/attachments/1008338641858330665/1012718569391390791/232323.png" width="80" alt="logo">
+                    <img src="https://cdn.discordapp.com/attachments/822487830387097671/1015559363215249479/a.png" width="80" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -181,7 +181,7 @@
 
         <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center main-box">
             <div class="col-lg-7 pr-3 pr-lg-2">
-                <h2 class="fw-bold lh-1 text-white text-right m-0 main-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.چاپگرها و فعلی تکنولوژی</h2>
+                <h2 class="fw-bold lh-1 text-white text-right m-0 main-text">جهت عضویت در سرور کلیک کنید</h2>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
                 </div>
             </div>
@@ -192,7 +192,6 @@
         </div>
 
         <div class="text-center footer-text position-absolute col-10">
-                می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته
         </div>
     </div>
 
