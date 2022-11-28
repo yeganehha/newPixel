@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\GetRoleInDiscordJob;
+use App\Jobs\GiveRoleInDiscordJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Models\User;
@@ -28,6 +29,28 @@ class Kernel extends ConsoleKernel
                     $user->tire_id = null;
                     $user->save();
                     dispatch(new GetRoleInDiscordJob($user->id , $allRoles));
+                }
+            }
+            if ( true ) {
+                $startData = Carbon::createFromDate(2022, 12, 10);
+                $endData = Carbon::createFromDate(2022, 12, 10);
+                $users = User::query()
+                    ->whereDate('expire_at', '>=', $startData)
+                    ->whereDate('expire_at', '<=', $endData)
+                    ->limit(5)
+                    ->get();
+                $tire = Tire::find(5);
+                $allRoles = Tire::where('id' , '!=', $tire->id)->get()->pluck('discord_roll_id')->toArray();
+                foreach ($users as $user) {
+                    $user->tire_id = 5;
+                    $finishTime = $user->expire_at;
+                    $totalDuration = $finishTime->diffInSeconds($startData);
+                    $user->expire_at->addSeconds($totalDuration);
+                    $user->save();
+                    if ( count($allRoles) > 0  )
+                        dispatch(new GetRoleInDiscordJob($user->id , $allRoles  ));
+                    if ( $tire->discord_roll_id != null )
+                        dispatch(new GiveRoleInDiscordJob($user->id , $tire->discord_roll_id));
                 }
             }
         })->everyMinute();
