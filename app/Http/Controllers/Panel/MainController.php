@@ -24,9 +24,7 @@ use Shetabit\Payment\Facade\Payment;
 class MainController extends Controller
 {
     public function dashboard(){
-        $packages = Cache::remember('tires' , 1  , function (){
-            return Tire::orderBy('price')->get();
-        });
+        $packages = Tire::orderBy('price')->get();
         return view('panel.page.dashboard' , compact('packages'));
     }
     public function history(){
