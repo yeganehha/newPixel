@@ -48,7 +48,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <div class="alert alert-info w-100 text-center">
                                 تراکنشی یافت نشد!
                             </div>
