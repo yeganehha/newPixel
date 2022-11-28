@@ -129,4 +129,13 @@ class User extends Authenticatable
     public function isAdmin(){
         return PanelAdmin::where('user_id' , $this->id)->exists() ;
     }
+
+    public function isAccept(){
+        return backHistory::where('user_id' , $this->id)->where('status' , 2)->exists() ;
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(backHistory::class )->orderByDesc('status')->latest();
+    }
 }

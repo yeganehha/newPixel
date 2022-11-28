@@ -21,6 +21,7 @@
     @style("/assets/admin/css/style.min.css")
     @style("/assets/admin/css/rtl.css")
     @style("https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v27.2.1/dist/font-face.css")
+    @livewireStyles
 </head>
 
 <body>
@@ -110,6 +111,12 @@
                             <span class="hide-menu">تاریخچه تراکنش ها</span>
                         </a>
                     </li>
+                    <li class="sidebar-item @isActive('backHistory', 'selected')">
+                        <a class="sidebar-link @isActive('backHistory', 'active') " href="@route('backHistory')" aria-expanded="false">
+                            <i data-feather="user" class="feather-icon"></i>
+                            <span class="hide-menu">زندگی نامه کارکتر</span>
+                        </a>
+                    </li>
                     @if ( auth()->user()->isAdmin() )
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="@route(getRouteName().'.home')" aria-expanded="false">
@@ -169,6 +176,11 @@
                     {!!  implode('', $errors->all('<div>:message</div>')) !!}
                 </div>
             @endif
+            @if( ! auth()->user()->isAccept())
+                <div class="alert alert-danger @isActive('backHistory', 'd-none')">
+                    <a href="@route('backHistory')"> لطفا زندگی نامه کارکترتان را وارد نمایید!</a>
+                </div>
+            @endif
             @yield('content')
 
         </div>
@@ -191,6 +203,7 @@
 @script("/assets/admin/js/sidebarmenu.min.js")
 @script("/assets/admin/js/custom.min.js")
 
+@livewireScripts
 <script>
     let theme = localStorage.getItem('theme');
     setThemeAttributes(theme);
