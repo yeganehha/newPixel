@@ -21,16 +21,15 @@ class History extends Model
         'accepted_time',
     ];
     protected $casts = [
-        'user_id' => 'int',
-        'accepted_by' => 'int',
+        'user_id' => 'string',
+        'accepted_by' => 'string',
         'history' => 'string',
         'reason' => 'string',
         'status' => 'int',
         'accepted_time' => 'datetime',
     ];
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
