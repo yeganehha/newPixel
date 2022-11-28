@@ -136,6 +136,6 @@ class User extends Authenticatable
 
     public function histories()
     {
-        return $this->hasMany(backHistory::class )->orderByDesc('status')->latest();
+        return $this->hasMany(backHistory::class )->latest();
     }
 }

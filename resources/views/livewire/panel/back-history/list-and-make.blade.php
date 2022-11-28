@@ -27,6 +27,7 @@
             <table class="table display mb-4 table-responsive-xl card-table no-footer">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>تاریخ ارسال</th>
                     <th>تاریخ بررسی</th>
                     <th>وضعیت</th>
@@ -37,6 +38,9 @@
                 <tbody>
                 @forelse($histories as $Bhistory)
                     <tr>
+                        <td>
+                            #{{ $Bhistory->id }}
+                        </td>
                         <td>{{ $Bhistory->updated_at->toJalali()->formatJalaliDatetime() }}</td>
                         <td>{{ $Bhistory->accepted_time ? $Bhistory->accepted_time->toJalali()->formatJalaliDatetime() : '' }}</td>
                         <td>
@@ -58,14 +62,15 @@
                             {{ $Bhistory->reason }}
                         </td>
                         <td>
-                            <span class="text-info" style="cursor: pointer"  onclick="document.getElementById('history').value = '{{ $Bhistory->history }}'">
+                            <div class="d-none" id="H-{{ $Bhistory->id }}">{{ $Bhistory->history }}</div>
+                            <span class="text-info" style="cursor: pointer"  onclick="document.getElementById('history').value = document.getElementById('H-{{ $Bhistory->id }}').innerHTML;">
                                 <svg width="24px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
                             </span>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                             <div class="alert alert-info w-100 text-center">
                                 شما هنوز زندگی نامه ای ارسال نکردید!
                             </div>

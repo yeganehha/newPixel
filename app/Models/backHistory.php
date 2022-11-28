@@ -26,7 +26,7 @@ class backHistory extends Model
         'history' => 'string',
         'reason' => 'string',
         'status' => 'int',
-        'accepted_time' => 'date',
+        'accepted_time' => 'datetime',
     ];
 
     public function user()
@@ -36,6 +36,6 @@ class backHistory extends Model
 
     public function admin()
     {
-        return $this->belongsTo(User::class , 'id' , 'accepted_by');
+        return $this->belongsTo(User::class , 'accepted_by' );
     }
 }

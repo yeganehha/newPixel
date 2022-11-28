@@ -20,7 +20,7 @@
 
 
                 @include('admin::layouts.child-sidebar-menu')
-                @if(hasPermission(getRouteName().'.crud.lists', true) and false)
+                @if(hasPermission(getRouteName().'.crud.lists', true) and true)
                 <li class="sidebar-item @isActive([getRouteName().'.crud.lists', getRouteName().'.crud.create'], 'selected')">
                     <a class="sidebar-link @isActive([getRouteName().'.crud.lists', getRouteName().'.crud.create'], 'active') " href="@route(getRouteName().'.crud.lists')" aria-expanded="false">
                         <i data-feather="package" class="feather-icon"></i>
@@ -29,7 +29,7 @@
                 </li>
                 @endif
 
-                @if(hasPermission(getRouteName().'.translation', true) and false)
+                @if(hasPermission(getRouteName().'.translation', true) and true)
                 <li class="sidebar-item @isActive(getRouteName().'.translation', 'selected')">
                     <a class="sidebar-link @isActive(getRouteName().'.translation', 'active') " href="@route(getRouteName().'.translation')" aria-expanded="false">
                         <i data-feather="globe" class="feather-icon"></i>

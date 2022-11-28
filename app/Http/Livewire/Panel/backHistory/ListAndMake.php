@@ -23,6 +23,7 @@ class ListAndMake extends Component
             $this->history->accepted_time = null;
             $this->history->save();
             $this->save = true;
+            $this->histories = Auth()->user()->histories;
         }
     }
 

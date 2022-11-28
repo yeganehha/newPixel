@@ -103,5 +103,12 @@
     "Trans_id": "شماره پیگیری بانکی",
     "Result": "پیام بانک",
     "Transaction": "تراکنش",
-    "Transactions": "تراکنش ها"
+    "Transactions": "تراکنش ها",
+    "Accepted_by": "ادیمن بررسی کننده",
+    "History": "زندگی نامه",
+    "Reason": "علت رد",
+    "Accepted_time": "زمان تایید",
+    "BackHistory": "زندگی نامه کارکترها",
+    "BackHistories": "زندگی نامه کارکترها",
+    "User_id": "کاربر"
 }
