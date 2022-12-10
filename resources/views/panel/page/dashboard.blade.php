@@ -45,6 +45,9 @@
                         <div class="d-flex mb-3 mr-4 align-items-center">
                             <span class="text-black" style="cursor: pointer" title="{{ auth()->user()->expire_at->toJalali()->formatJalaliDatetime() }}">{{ auth()->user()->expireAtHumanFormat() }}</span>
                         </div>
+                        @if( auth()->user()->getActiveTire() )
+                                <a href="{{ route('getRoll') }}" class="btn btn-info">دریافت مجدد اشتراک در دیسکورد</a>
+                        @endif
                     @endif
                 </div>
             </div>

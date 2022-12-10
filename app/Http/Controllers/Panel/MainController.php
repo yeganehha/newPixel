@@ -120,4 +120,13 @@ class MainController extends Controller
         if ( $tire->discord_roll_id != null )
             dispatch(new GiveRoleInDiscordJob($user->id , $tire->discord_roll_id));
     }
+
+    public function getRoll(){
+        $tire = auth()->user()->getActiveTire(false) ;
+        if ( $tire->id != null ){
+            dispatch(new GiveRoleInDiscordJob( auth()->user()->id , $tire->discord_roll_id));
+            return redirect()->route('dashbaord')->with('success', 'تا یک دقیقه دیگر اشتراک شما در دیسکورد فعال می شود.');
+        }
+        return redirect()->route('dashbaord')->withErrors( 'شما اشتراک فعالی ندارید!');
+    }
 }
