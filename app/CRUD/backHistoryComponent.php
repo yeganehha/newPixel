@@ -31,7 +31,7 @@ class backHistoryComponent implements CRUDComponent
     // Searchable fields, if you dont want search feature, remove it
     public function searchable()
     {
-        return ['reason', 'id', 'user_id', 'accepted_by'];
+        return ['reason', 'id', 'user_id', 'name', 'ability', 'history', 'accepted_by'];
     }
 
     // Write every fields in your db which you want to have a input

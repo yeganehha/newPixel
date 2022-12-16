@@ -15,10 +15,21 @@ class ListAndMake extends Component
 
     protected $rules = [
         'history.history' => 'required|string',
+        'history.rules' => 'required|in:1',
+        'history.admin' => 'required|in:1',
+        'history.accept' => 'required|in:1',
+        'history.name' => 'required|string',
+        'history.ability' => 'required|string',
     ];
+
+    public function updated($field)
+    {
+        $this->validateOnly($field);
+    }
     public function save()
     {
         if ( ! $this->is_accept) {
+            $this->validate();
             $this->history->user_id = auth()->id();
             $this->history->accepted_time = null;
             $this->history->save();

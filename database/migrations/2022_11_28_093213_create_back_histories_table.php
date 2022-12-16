@@ -20,6 +20,11 @@ class CreateBackHistoriesTable extends Migration
             $table->bigInteger('accepted_by')->unsigned()->nullable();
             $table->foreign('accepted_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->longText('history')->default(null);
+            $table->longText('ability')->default(null);
+            $table->string('name')->default(null);
+            $table->boolean('rules')->default(true);
+            $table->boolean('admin')->default(true);
+            $table->boolean('accept')->default(true);
             $table->text('reason')->default(null);
             $table->tinyInteger('status')->default(0);
             $table->timestamp('accepted_time')->default(null)->nullable();

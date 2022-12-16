@@ -15,6 +15,11 @@ class History extends Model
         'id',
         'user_id',
         'accepted_by',
+        'rules',
+        'admin',
+        'name',
+        'ability',
+        'accept',
         'history',
         'status',
         'reason',
@@ -26,6 +31,9 @@ class History extends Model
         'history' => 'string',
         'reason' => 'string',
         'status' => 'int',
+        'rules' => 'boolean',
+        'admin' => 'boolean',
+        'accept' => 'boolean',
         'accepted_time' => 'datetime',
     ];
 
