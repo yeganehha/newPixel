@@ -5,7 +5,7 @@
         {{ $history->user->username }}#{{ $history->user->discriminator }}
     </td>
     <td class="" style="diraction: ltr;">
-        @if ( $history->admin )
+        @if ( $history->admin and $history->admin !== true)
             <img class="img-fluid  rounded-circle " width="50" height="50" src="{{ $history->admin->getAvatar() }}" alt="">
             {{ $history->admin->username }}#{{ $history->admin->discriminator }}
         @endif
@@ -16,7 +16,14 @@
         </button>
         <div x-show="modalIsOpen" class="cs-modal animate__animated animate__fadeIn">
             <div class="bg-white shadow rounded p-5" @click.away="modalIsOpen = false"  style="max-width: 85%;max-height: 90%;overflow-y: scroll;">
+                <h4>نام کارکتر</h4>
+                {!! nl2br(e($history->name)) !!}
+                <hr>
+                <h4>کارکتر های مد نظر</h4>
                 {!! nl2br(e($history->history)) !!}
+                <hr>
+                <h4>ویزگی ها</h4>
+                {!! nl2br(e($history->ability)) !!}
                 <div class="mt-5 d-flex justify-content-between">
                     <a wire:click.prevent="accept" @click.prevent="modalIsOpen = false" class="text-white btn btn-success shadow">تایید زندگی نامه</a>
                     <input type="text" class="form-control w-40" wire:model="reason" placeholder="علت رد">

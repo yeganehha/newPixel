@@ -8,7 +8,7 @@ use Livewire\Component;
 class History extends Component
 {
 
-    public \App\Models\backHistory $history ;
+    public $history ;
     public $histories ;
     public $is_accept ;
     public $default_history = null ;
@@ -16,9 +16,9 @@ class History extends Component
 
     protected $rules = [
         'history.history' => 'required|string',
-        'history.rules' => 'required|in:[1]',
-        'history.admin' => 'required|in:[1]',
-        'history.accept' => 'required|in:[1]',
+        'history.rules' => 'required|in:1',
+        'history.admin' => 'required|in:1',
+        'history.accept' => 'required|in:1',
         'history.name' => 'required|string',
         'history.ability' => 'required|string',
     ];

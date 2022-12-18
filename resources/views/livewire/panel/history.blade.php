@@ -58,7 +58,7 @@
             </table>
         </div>
     </div>
-
+    
     <div class="card-body card-body">
         @if($is_accept)
             <div class="alert alert-success">

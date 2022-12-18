@@ -18,10 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/test', function () {
-//    $t = \App\Models\Transaction::with('user')->find(1325);
-//    dd($t);
-//});
+// Route::get('/test', function () {
+//     $t = \App\Models\Transaction::with('user')->find(1325);
+//     dd($t);
+// });
 
 Route::group(['middleware'=>['auth'] ] , function (){
     Route::get('dashboard' , [\App\Http\Controllers\Panel\MainController::class , 'dashboard'])->name('dashbaord');
