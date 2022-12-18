@@ -18,8 +18,8 @@
                 <tbody>
                 @forelse($transactions as $transaction)
                     <tr>
-                        <td>{{ $transaction->tire->name }}</td>
-                        <td>{{ $transaction->tire->expire }} روز</td>
+                        <td>{{ $transaction->tire ? $transaction->tire->name : 'حمایت مالی' }}</td>
+                        <td>{{ $transaction->tire ? $transaction->tire->expire.' روز' : 'حمایت مالی' }}</td>
                         <td>
                             @if( $transaction->amount == 0 )
                                 رایگان !

@@ -4,7 +4,7 @@
         <img class="img-fluid  rounded-circle " width="50" height="50" src="{{ $transaction->user->getAvatar() }}" alt="">
         {{ $transaction->user->username }}#{{ $transaction->user->discriminator }}<br>{{ $transaction->created_at->toJalali() }}<br>{{ $transaction->created_at }}
     </td>
-    <td class="">{{ $transaction->tire->name }}</td>
+    <td class="">{{ $transaction->tire ? $transaction->tire->name : 'حمایت مالی' }}</td>
     <td class="">{{ $transaction->lastTire ? $transaction->lastTire->name : "-" }}</td>
     <td class="">{{ number_format($transaction->amount) }}</td>
     <td class="">{{ number_format($transaction->discount) }}</td>

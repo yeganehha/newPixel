@@ -28,6 +28,8 @@ Route::group(['middleware'=>['auth'] ] , function (){
     Route::get('history' , [\App\Http\Controllers\Panel\MainController::class , 'history'])->name('history');
     Route::get('back-history' , [\App\Http\Controllers\Panel\MainController::class , 'backHistory'])->name('backHistory');
     Route::get('subscribe/{tire}' , [\App\Http\Controllers\Panel\MainController::class , 'buy'])->name('buy');
+    Route::get('donate' , [\App\Http\Controllers\Panel\MainController::class , 'donate'])->name('donate');
+    Route::post('donate' , [\App\Http\Controllers\Panel\MainController::class , 'payDonate'])->name('payDonate');
     Route::get('verify/{transaction}' , [\App\Http\Controllers\Panel\MainController::class , 'callback'])->name('callback');
     Route::get('get-rolls' , [\App\Http\Controllers\Panel\MainController::class , 'getRoll'])->name('getRoll');
 });

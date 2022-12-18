@@ -95,6 +95,12 @@ class MainController extends Controller
                 $transaction->result = "پرداخت تکمیل و با موفقیت انجام شده است";
                 $transaction->is_pay = true;
                 $transaction->save();
+                if ( $transaction->tire_id == null ){
+                    $user = Auth()->user();
+                    dispatch(new GiveRoleInDiscordJob($user->id , env('DONATE_ROLE_ID')));
+                    DB::commit();
+                    return redirect()->route('history')->with('success', 'با تشکر از حمایت شما.');
+                }
                 $this->subscribeAdd($transaction->tire()->first());
                 DB::commit();
                 return redirect()->route('history')->with('success', 'دریافت اشتراک شما با موفقیت انجام شد.');
@@ -128,5 +134,41 @@ class MainController extends Controller
             return redirect()->route('dashbaord')->with('success', 'تا یک دقیقه دیگر اشتراک شما در دیسکورد فعال می شود.');
         }
         return redirect()->route('dashbaord')->withErrors( 'شما اشتراک فعالی ندارید!');
+    }
+
+
+    public function donate()
+    {
+        $max = env('MIN_DONATION' , 150000);
+        return view('panel.page.donate' , compact('max') );
+    }
+    public function payDonate(Request $request, Transaction $transaction)
+    {
+        $min = env('MIN_DONATION' , 150000);
+        $this->validate($request , [
+            'price' => ['required' , 'numeric' , 'min:'.$min ]
+        ] , [
+            'min' => "حداقال مبلغ قایل پرداخت ".number_format($min)." تومان می باشد.",
+            'numeric' => "حداقال مبلغ قایل پرداخت ".number_format($min)." تومان می باشد.",
+            'required' => "حداقال مبلغ قایل پرداخت ".number_format($min)." تومان می باشد.",
+        ]);
+        $transaction->user_id = Auth()->id();
+        $transaction->tire_id = null;
+        $transaction->uuid = \Illuminate\Support\Str::uuid();
+        $transaction->discount = 0;
+        $transaction->last_tire_id = null;
+        $transaction->amount = $request->price;
+        $transaction->visitor = $request->ip();
+        $transaction->save();
+        $invoice = new Invoice;
+        $invoice->amount( $request->price );
+        $invoice->detail('Title', 'Donation')
+            ->detail('discount', 0)
+            ->detail('User', Auth()->id());
+        return Payment::callbackUrl(route('callback', $transaction->uuid))->purchase($invoice, function ($driver, $transactionId) use ($transaction) {
+            $transaction->trans_id = $transactionId;
+            $transaction->save();
+            DB::commit();
+        })->pay()->render();
     }
 }

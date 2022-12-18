@@ -125,6 +125,12 @@
                             <span class="hide-menu">زندگی نامه کارکتر</span>
                         </a>
                     </li>
+                    <li class="sidebar-item @isActive('donate', 'selected')">
+                        <a class="sidebar-link @isActive('donate', 'active') " href="@route('donate')" aria-expanded="false">
+                            <i data-feather="gift" class="feather-icon"></i>
+                            <span class="hide-menu">حمایت مالی</span>
+                        </a>
+                    </li>
                     @if ( env('FIVEMLINK' , false) )
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ env('FIVEMLINK') }}" aria-expanded="false">
