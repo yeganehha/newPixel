@@ -43,6 +43,8 @@ class MainController extends Controller
 
     public function buy(Request $request, Tire $tire, Transaction $transaction){
         try {
+            if( ! auth()->user()->isAccept())
+                return redirect()->route('backHistory')->withErrors("جهت دریافت اشتراک، ابتدا فرم زیر را پر کنید و منتظر تایید باشید.");
             DB::beginTransaction();
             $discount =Auth()->user()->discountUpgrade() ;
             $discount = ( $discount > $tire->price ) ? $tire->price : $discount;
