@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Erfan Ebrahimi">
 
-    <title>{{ __('NoxRP') }} - @hasSection('title') @yield('title') @else {{ __('Home') }} @endif</title>
+    <title>{{ __('Atlantis Retro RP') }} - @hasSection('title') @yield('title') @else {{ __('Home') }} @endif</title>
 
     {{--Scripts which must load before full loading--}}
     @style('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css')
@@ -47,7 +47,7 @@
                 <!-- Logo -->
                 <div class="navbar-brand">
                     <a href="@route('dashbaord')">
-                        <span class="logo-text">Nox RP</span>
+                        <span class="logo-text">Atlantis Retro RP</span>
                     </a>
 
                     <div class="container-checkbox">
