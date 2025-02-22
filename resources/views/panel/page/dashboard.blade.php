@@ -16,7 +16,7 @@
                 <div class="card-body  activity-card">
                     @if ( auth()->user()->getPercent() !== false )
                         <div class="progress  mb-3">
-                            <div class="progress-bar progress-animated" style="width: {{ auth()->user()->getPercent() }}%;background: linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8);" role="progressbar">
+                            <div class="progress-bar progress-animated" style="width: {{ auth()->user()->getPercent() }}%;background: linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#ff8383);" role="progressbar">
                             </div>
                         </div>
                     @else

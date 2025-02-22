@@ -25,7 +25,7 @@
 {{--        @php--}}
 {{--            foreach(\App\Http\Controllers\Panel\DashboardController::getUsers() as $i => $month) {--}}
 {{--                $month->--}}
-{{--     linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)       }--}}
+{{--     linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#ff8383)       }--}}
 {{--        @endphp--}}
 
         const usersEl = document.getElementById('usersChart');
@@ -36,7 +36,7 @@
                 datasets: [{
                     label: 'کاربران جدید ' + '{{ verta()->format('F') }}',
                     data: [{{ implode(' , ' , $users) }}],
-                    backgroundColor: '#5f76e8',
+                    backgroundColor: '#ff8383',
                 }]
             },
             options: {
@@ -53,7 +53,7 @@
                 datasets: [{
                     label: 'مبالغ پرداخت شده ' + '{{ verta()->format('F') }}' + " ماه",
                     data: [{{ implode(' , ' , $incomeMonth) }}],
-                    backgroundColor: '#5f76e8',
+                    backgroundColor: '#ff8383',
                 }]
             },
             options: {
@@ -70,7 +70,7 @@
                 datasets: [{
                     label: 'مبالغ پرداخت شده یک سال گذشته',
                     data: [{{ implode(', ', array_map(function ($entry) {return $entry['price'];}, $incomeYear)) }}],
-                    backgroundColor: '#5f76e8',
+                    backgroundColor: '#ff8383',
                 }]
             },
             options: {

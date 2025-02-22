@@ -11,10 +11,10 @@
     <title>{{ __('Atlantis Retro') }} - @hasSection('title') @yield('title') @else {{ __('Home') }} @endif</title>
 
     {{--Scripts which must load before full loading--}}
-    @style('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css')
-    @script('https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-    @script('https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-    @script('https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.2/dist/alpine.min.js')
+    @style('/assets/CDN/CSS/animate.min.css')
+    @script('/assets/CDN/JS/html5shiv.js')
+    @script('/assets/CDN/JS/respond.min.js')
+    @script('/assets/CDN/JS/alpine.min.js')
     @script("/assets/admin/js/ckeditor.min.js")
 
     {{--Styles--}}
@@ -184,7 +184,7 @@
             @endif
             @if( ! auth()->user()->isAccept())
                 <div class="alert alert-danger @isActive('backHistory', 'd-none')">
-                    <a href="@route('backHistory')"> لطفا زندگی نامه کارکترتان را وارد نمایید!</a>
+                    <a href="@route('backHistory')">لطفا فرم خود را پرکنید</a>
                 </div>
             @endif
             @yield('content')
@@ -193,7 +193,8 @@
         <!-- End Container fluid  -->
 
         <!-- footer -->
-        <footer class="footer text-center text-muted" style="direction: ltr">Developed by <a href="https://erfanebrahimi.ir">Erfan Ebrahimi</a>.</footer>
+        <footer class="footer text-center text-muted" style="direction: ltr"> Developed by <a href="https://coffeebede.ir/erfun">Erfan Ebrahimi </a>& <a href="https://coffeebede.ir/mo13ammad">Mohammad Saadati.</a></footer>
+
         <!-- End footer -->
     </div>
 </div>
