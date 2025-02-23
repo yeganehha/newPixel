@@ -35,7 +35,7 @@ class GetRoleInDiscordJob implements ShouldQueue
      */
     public function handle()
     {
-        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN')]);
+        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN') , 'logger' => app()->make(\Psr\Log\NullLogger::class)]);
         if ( is_array($this->roleId) ){
             foreach ($this->roleId as $id)
                 $discord->guild->removeGuildMemberRole([

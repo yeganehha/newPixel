@@ -16,13 +16,13 @@
                 <div class="card-body  activity-card">
                     @if ( auth()->user()->getPercent() !== false )
                         <div class="progress  mb-3">
-                            <div class="progress-bar progress-animated" style="width: {{ auth()->user()->getPercent() }}%;background: linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8);" role="progressbar">
+                            <div class="progress-bar progress-animated" style="width: {{ auth()->user()->getPercent() }}%;background: linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#ff8383);" role="progressbar">
                             </div>
                         </div>
                     @else
                         <div class="alert alert-info">
-                            برای ورود به سرور، لطفا پکیج مد نظر را خریداری نموده.
-                        </div>
+                    برای ورود به سرور نیازمند داشتن اشتراک فعال هستید
+                    </div>
                     @endif
                     @if ( auth()->user()->active_from != null )
                     <div class="d-flex mb-1 align-items-center">
@@ -115,7 +115,7 @@
                         <tr>
                             <td colspan="4">
                                 <div class="alert alert-info w-100 text-center">
-                                    متاسفانه پکیج فعالی وجود ندارد!
+                                    در حال حاضر امکان خرید اشتراک وجود ندارد
                                 </div>
                             </td>
                         </tr>

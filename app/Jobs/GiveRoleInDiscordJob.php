@@ -36,7 +36,7 @@ class GiveRoleInDiscordJob implements ShouldQueue
      */
     public function handle()
     {
-        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN')]);
+        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN') , 'logger' => app()->make(\Psr\Log\NullLogger::class)]);
         $discord->guild->addGuildMemberRole([
             'guild.id' =>  (int) env('DIsCORD_SERVER'),
             'user.id' =>  (int) $this->discordId,

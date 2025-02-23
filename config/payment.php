@@ -10,7 +10,7 @@ return [
     | You can switch to a different driver at runtime.
     |
     */
-    'default' => 'nextpay',
+    'default' => 'zarinpal',
 
     /*
     |--------------------------------------------------------------------------

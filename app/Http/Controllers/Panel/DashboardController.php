@@ -75,7 +75,7 @@ class DashboardController extends Controller
     }
 
     public static function getRoles(){
-        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN')]);
+        $discord = new DiscordClient(['token' => env('DISCORD_TOKEN') , 'logger' => app()->make(\Psr\Log\NullLogger::class)]);
         $roles = $discord->guild->getGuildRoles(['guild.id' =>  (int) env('DIsCORD_SERVER')]);
 
         $result = [];

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Erfan Ebrahimi">
 
-    <title>{{ __('NoxRP') }} - @hasSection('title') @yield('title') @else {{ __('Home') }} @endif</title>
+    <title>{{ __('Atlantis Retro') }} - @hasSection('title') @yield('title') @else {{ __('Home') }} @endif</title>
 
     {{--Scripts which must load before full loading--}}
     @style('/assets/CDN/CSS/animate.min.css')
@@ -47,7 +47,7 @@
                 <!-- Logo -->
                 <div class="navbar-brand">
                     <a href="@route('dashbaord')">
-                        <span class="logo-text">Nox RP</span>
+                        <span class="logo-text">Atlantis Retro</span>
                     </a>
 
                     <div class="container-checkbox">
@@ -80,7 +80,7 @@
                     <!-- User profile and search -->
                     <li class="nav-item dropdown">
                         <span class="ml-2 d-none d-lg-inline-block">
-                            <span>Hello, @user('username')</span>
+                            <span>Hello, @user('username') Welcome to Atlantis Retro Dashboard</span>
                             <img class="img-fluid  rounded-circle " width="50" height="50" src="https://cdn.discordapp.com/avatars/@user('id')/@user('avatar').webp?size=64" alt="">
 
                         </span>
@@ -184,7 +184,7 @@
             @endif
             @if( ! auth()->user()->isAccept())
                 <div class="alert alert-danger @isActive('backHistory', 'd-none')">
-                    <a href="@route('backHistory')"> لطفا زندگی نامه کارکترتان را وارد نمایید!</a>
+                    <a href="@route('backHistory')">لطفا فرم Whitelist  خود را پرکنید</a>
                 </div>
             @endif
             @yield('content')
@@ -193,7 +193,8 @@
         <!-- End Container fluid  -->
 
         <!-- footer -->
-        <footer class="footer text-center text-muted" style="direction: ltr">Developed by <a href="https://erfanebrahimi.ir">Erfan Ebrahimi</a>.</footer>
+        <footer class="footer text-center text-muted" style="direction: ltr"> Developed by <a href="https://coffeebede.ir/erfun">Erfan Ebrahimi </a>& <a href="https://coffeebede.ir/mo13ammad">Mohammad Saadati.</a></footer>
+
         <!-- End footer -->
     </div>
 </div>

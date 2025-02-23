@@ -141,7 +141,8 @@
         <!-- End Container fluid  -->
 
         <!-- footer -->
-        <footer class="footer text-center text-muted" style="direction: ltr">VIP Package, Developed by <a href="https://erfanebrahimi.ir">Erfan Ebrahimi</a>.</footer>
+        <footer class="footer text-center text-muted" style="direction: ltr"> Developed by <a href="https://coffeebede.ir/erfun">Erfan Ebrahimi </a>& <a href="https://coffeebede.ir/mo13ammad">Mohammad Saadati.</a></footer>
+
         <!-- End footer -->
     </div>
 </div>

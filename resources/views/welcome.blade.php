@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>NOX RolePlay</title>
+    <title>Atlantis Retro</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -100,7 +100,7 @@
         opacity: .75;
     }
     body {
-        background-image: url('https://fivem.net/73663161434ea35812a20da2e517f102.jpg');
+        background-image: url('https://uploadkon.ir/uploads/d88a22_25download.jpeg');
         background-size: cover;
         background-attachment: fixed;
         overflow: hidden;
@@ -147,7 +147,7 @@
         <header class="mt-md-3 mt-3" dir="ltr">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="#">
-                    <img src="https://cdn.discordapp.com/attachments/822487830387097671/1015559363215249479/a.png" width="80" alt="logo">
+                    <img src="https://uploadkon.ir/uploads/fc2e22_25atlantisrr.png" width="80" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
