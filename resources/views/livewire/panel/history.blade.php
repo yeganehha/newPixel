@@ -88,9 +88,9 @@
             </div>
             <div class="form-group">
             <label for="input-age" class="control-label ">سن متقاضی</label>
-            <input class="form-control"  wire:model.lazy="history.age" value="{{ $default_history }}">
+            <input type="number" class="form-control" wire:model.lazy="history.age" min="18">
             <span class="text-danger">
-                @error('history.age') وارد کردن این مورد الزامی است @enderror
+                @error('history.age') وارد کردن این مورد الزامی است  / سن شما باید 18 سال به بالا باشد@enderror
             </span>
             <div class="form-group">
                 <label class="control-label">جنسیت متقاضی</label>
@@ -143,7 +143,7 @@
 
             <div class="form-group">
                 <label for="input-birthdate" class="control-label">تاریخ تولد کاراکتر</label>
-                <input class="form-control" wire:model.lazy="history.birthdate" id="input-birthdate" type="date">
+                <input class="form-control" wire:model.lazy="history.birthdate" id="input-birthdate" type="date" max="1968-12-31">
                 <span class="text-danger">
                     @error('history.birthdate') وارد کردن تاریخ تولد الزامی است @enderror
                 </span>

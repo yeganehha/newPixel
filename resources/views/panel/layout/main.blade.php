@@ -80,7 +80,7 @@
                     <!-- User profile and search -->
                     <li class="nav-item dropdown">
                         <span class="ml-2 d-none d-lg-inline-block">
-                            <span>Hello, @user('username')</span>
+                            <span>Hello, @user('username') Welcome to Atlantis Retro Dashboard</span>
                             <img class="img-fluid  rounded-circle " width="50" height="50" src="https://cdn.discordapp.com/avatars/@user('id')/@user('avatar').webp?size=64" alt="">
 
                         </span>
@@ -184,7 +184,7 @@
             @endif
             @if( ! auth()->user()->isAccept())
                 <div class="alert alert-danger @isActive('backHistory', 'd-none')">
-                    <a href="@route('backHistory')">لطفا فرم خود را پرکنید</a>
+                    <a href="@route('backHistory')">لطفا فرم Whitelist  خود را پرکنید</a>
                 </div>
             @endif
             @yield('content')

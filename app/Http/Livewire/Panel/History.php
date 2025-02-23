@@ -16,7 +16,7 @@ class History extends Component
 
     protected $rules = [
         'history.realname' => 'required|string', // نام کامل متقاضی
-        'history.age' => 'required|integer', // سن متقاضی
+        'history.age' => 'required|integer|min:18',
         'history.gender' => 'required|in:male,female', // جنسیت متقاضی
         'history.source' => 'required|string', // نحوه آشنایی با رترو
         'history.referral' => 'nullable|string', // نام معرف

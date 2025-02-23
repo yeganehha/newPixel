@@ -21,8 +21,8 @@
                         </div>
                     @else
                         <div class="alert alert-info">
-                            برای ورود به سرور، لطفا پکیج مد نظر را خریداری نموده.
-                        </div>
+                    برای ورود به سرور نیازمند داشتن اشتراک فعال هستید
+                    </div>
                     @endif
                     @if ( auth()->user()->active_from != null )
                     <div class="d-flex mb-1 align-items-center">
@@ -115,7 +115,7 @@
                         <tr>
                             <td colspan="4">
                                 <div class="alert alert-info w-100 text-center">
-                                    متاسفانه پکیج فعالی وجود ندارد!
+                                    در حال حاضر امکان خرید اشتراک وجود ندارد
                                 </div>
                             </td>
                         </tr>
